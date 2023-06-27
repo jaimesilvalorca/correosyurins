@@ -1,0 +1,41 @@
+<h1>Products</h1>
+<br>
+<table id="productsTable" class="table table-striped">
+    <tr>
+        <td><strong>Producto</strong></td>
+        <td><strong>Descripción</strong></td>
+        <td><strong>Precio</strong></td>
+        <td><strong>Código</strong></td>
+        <td><strong>Stock</strong></td>
+        <td><strong>Categoría</strong></td>
+    </tr>
+    {{#each data.docs}}
+    <tr>
+    <td>{{this.title}}</td>
+    <td>{{this.description}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.code}}</td>
+    <td>{{this.stock}}</td>
+    <td>{{this.category}}</td>
+    </tr>
+    {{/each}}  
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item {{#if data.hasPrevPage}}{{else}}disabled{{/if}}">
+        <a class="page-link" href="/products?page={{data.prevPage}}">Anterior</a>
+    </li>
+    {{#each front_pagination}}
+        <li class="page-item {{#if this.active}}active{{/if}}">
+            <a class="page-link" href="/products?page={{this.page}}">{{this.page}}</a>
+        </li>
+    {{/each}}
+    <li class="page-item {{#if data.hasNextPage}}{{else}}disabled{{/if}}">
+        <a class="page-link" href="/products?page={{data.nextPage}}">Siguiente</a>
+        </li>
+  </ul>
+</nav>
+<div id="moving"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
